@@ -1,5 +1,8 @@
 package com.galvanize;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
   Linked List
 
@@ -33,4 +36,48 @@ package com.galvanize;
   the end of the list.
  */
 public class LinkedList {
+    private List<Node> node;
+
+    public LinkedList(){
+        this.node = new ArrayList<Node>();
+    }
+
+
+    public boolean isEmpty(){
+        if(!node.isEmpty()) {
+            return false;
+        }
+        return true;
+    }
+
+    public void addNode(Node node){
+        if(this.node.size() > 0 ){
+            this.node.get(this.node.size()-1).setNext(node);
+        }
+        this.node.add(node);
+
+
+    }
+
+    public Node getHead(){
+        return node.get(0);
+    }
+    public int count(){
+        return node.size();
+    }
+
+    public Node find(Node node){
+        return this.node.get(this.node.indexOf(node));
+    }
+
+    public void removeNode(Node node){
+        Node nextNode = node.getNext();
+        int index = this.node.indexOf(node);
+        if(index != 0){
+            this.node.get(index - 1).setNext(nextNode);
+        }else if(index == this.node.size() -1){
+            this.node.get(index - 1).setNext(null);
+        }
+        this.node.remove(node);
+    }
 }
